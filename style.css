@@ -3,57 +3,76 @@ body {
   font-family: Arial, sans-serif;
   background: #0b0f1a;
   color: white;
+  scroll-behavior: smooth;
 }
 
-/* Navbar */
+/* NAVBAR */
 .navbar {
   display: flex;
   justify-content: space-between;
-  padding: 15px 30px;
+  align-items: center;
+  padding: 15px 25px;
   background: #111827;
   position: sticky;
   top: 0;
+  z-index: 1000;
 }
 
 .navbar a {
   color: white;
   margin-left: 15px;
   text-decoration: none;
+  font-size: 14px;
+}
+
+.navbar a:hover {
+  color: #00bfff;
 }
 
 .logo {
   font-weight: bold;
   color: #00bfff;
+  font-size: 18px;
 }
 
-/* Hero */
+/* HERO */
 .hero {
   text-align: center;
   padding: 120px 20px;
-  background: linear-gradient(to bottom, #0b0f1a, #111827);
+  background: linear-gradient(#0b0f1a, #111827);
 }
 
 .hero h1 {
   font-size: 42px;
+  margin-bottom: 10px;
 }
 
 .hero p {
-  max-width: 600px;
-  margin: auto;
-  opacity: 0.8;
+  max-width: 700px;
+  margin: 20px auto;
+  opacity: 0.85;
+  line-height: 1.5;
 }
 
+/* BUTTON */
 .btn {
   display: inline-block;
   margin-top: 20px;
-  padding: 10px 20px;
+  padding: 12px 20px;
   background: #00bfff;
   color: black;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: 0.2s;
 }
 
-/* Sections */
+.btn:hover {
+  background: #00a3d6;
+  transform: scale(1.05);
+}
+
+/* SECTIONS */
 .section {
   padding: 60px 20px;
   max-width: 900px;
@@ -62,16 +81,63 @@ body {
 
 .dark {
   background: #111827;
+  border-top: 1px solid #1f2937;
+  border-bottom: 1px solid #1f2937;
 }
 
 h2 {
   color: #00bfff;
+  margin-bottom: 20px;
 }
 
-/* Footer */
+/* LISTS */
+ul {
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+/* LORE SECTION (IMPORTANT FOR YOUR BIG TEXT) */
+.lore {
+  max-width: 1000px;
+}
+
+.lore-text {
+  white-space: pre-wrap;
+  line-height: 1.7;
+  font-size: 15px;
+  color: #e5e7eb;
+  background: #0f172a;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #1f2937;
+}
+
+/* FOOTER */
 footer {
   text-align: center;
   padding: 20px;
-  background: #0b0f1a;
   font-size: 12px;
+  background: #0b0f1a;
+  opacity: 0.7;
+}
+
+/* MOBILE FIX */
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .navbar a {
+    margin-left: 0;
+    margin-right: 10px;
+  }
 }
