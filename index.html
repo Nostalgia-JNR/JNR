@@ -1,49 +1,63 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>JNR - Jedi's Nostalgic Return</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>JNR - Jedi’s Nostalgic Return</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<div class="hero">
-<h1>Jedi's Nostalgic Return</h1>
-<p class="subtitle">We're only strong together, and together we shall stand.</p>
-</div>
 
-<section>
-<h2>Welcome to JNR</h2>
-<p>
-JNR is more than a clan. We are a home for newcomers and veterans alike —
-a place where old memories are revisited and new ones are created.
-</p>
+  <header class="navbar">
+    <div class="logo">JNR</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#about">About</a>
+      <a href="#members">Members</a>
+      <a href="#join">Join</a>
+    </nav>
+  </header>
 
-<p>
-Whether you disappeared for months, years, or even decades...
-this is your homecoming.
-</p>
-</section>
+  <section class="hero">
+    <h1>Jedi’s Nostalgic Return</h1>
+    <p>We are JNR — a clan built on legacy, unity, and the echoes of a legendary past.</p>
+    <a class="btn" href="#join">Join the Order</a>
+  </section>
 
-<section>
-<h2>Our Purpose</h2>
-<ul>
-<li>Reopen the doors of nostalgia</li>
-<li>Welcome a new generation of players</li>
-<li>Reunite warriors and create new memories</li>
-</ul>
-</section>
+  <section id="about" class="section">
+    <h2>About JNR</h2>
+    <p>
+      JNR is more than a clan. It is a gathering of veterans and newcomers,
+      bound by a shared passion for Star Wars Jedi Academy and its community.
+      We stand for respect, teamwork, and nostalgia for the golden era of the game.
+    </p>
+  </section>
 
-<section>
-<h2>Our Values</h2>
-<p>Loyalty means everything.</p>
-<p>Respect means everything.</p>
-<p>Community means everything.</p>
-</section>
+  <section id="members" class="section dark">
+    <h2>What We Offer</h2>
+    <ul>
+      <li>⚔ Clan battles & training</li>
+      <li>🧠 Mentorship for new players</li>
+      <li>🌌 Events and roleplay sessions</li>
+      <li>🤝 Friendly community environment</li>
+    </ul>
+  </section>
 
-<footer>
-<h3>==== Jedi's Nostalgic Return ====</h3>
-</footer>
+  <section id="join" class="section">
+    <h2>Join Us</h2>
+    <p>
+      If you feel the call of the Force, you already belong here.
+      Reach out and become part of the return.
+    </p>
+
+    <button onclick="showMessage()">Join JNR</button>
+    <p id="message"></p>
+  </section>
+
+  <footer>
+    <p>JNR - Jedi’s Nostalgic Return © 2026</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
