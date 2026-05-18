@@ -8,82 +8,145 @@
 
 <body>
 
-  <header class="navbar">
-    <div class="logo">JNR</div>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#lore">Lore</a>
-      <a href="#about">About</a>
-      <a href="#members">Members</a>
-      <a href="#join">Join</a>
-    </nav>
-  </header>
+<header class="navbar">
+  <div class="logo">JNR</div>
 
-  <!-- HERO -->
-  <section id="home" class="hero">
+  <nav>
+    <a href="#" onclick="showSection('home')">Home</a>
+    <a href="#" onclick="showSection('about')">About</a>
+    <a href="#" onclick="showSection('members')">Members</a>
+    <a href="#" onclick="showSection('auth')">Register / Login</a>
+  </nav>
+</header>
+
+<!-- HOME -->
+<section id="home" class="section">
+  <div class="hero">
     <h1>Jedi’s Nostalgic Return</h1>
     <p>JNR — A home for veterans and newcomers of Jedi Academy</p>
-    <a class="btn" href="#lore">Enter the Story</a>
-  </section>
+  </div>
+</section>
 
-  <!-- LORE / INTRO SECTION -->
-  <section id="lore" class="section dark lore">
+<!-- ABOUT (YOUR FULL LORE) -->
+<section id="about" class="section hidden">
+  <h2>About JNR</h2>
 
-    <pre class="lore-text">
+  <div class="lore-text">
 We're only strong together, and together we shall stand…! The Force still calls.. I know you can hear it too.. The ghostly wispers,of once legendary game reaching the very corners of our souls  
 
-This is **JNR .... The  Jedi’s Nostalgic Return**. JNR is more than a clan. We are a beacon of hope for those new comers, and veterans alike.  
+This is JNR .... The Jedi’s Nostalgic Return. JNR is more than a clan. We are a beacon of hope for those new comers, and veterans alike.  
 
 With us, you can become a part of a legendary nation, that once roamed the halls of Academy, crossed sabers beneath the stars with our opponents, defended honor and friendship in duels across the server's, FFA combats, laughers, challenges, vibes and mid-night focus up untill early-hours of chaos, feeling that irreplaceable magic only Jedi Academy could ever create.  
 
-Whether you vanished for months… years… or even decades… this is your homecoming, this is your Return! Our purpose is simple, yet powerful: To reopen the doors of Nostalgia. To welcome the new generation. To reunite warriors, share, experiance new&old memories, vibe, learn, play, chill and so much more, because together we write the books of our history.  
+Whether you vanished for months… years… or even decades… this is your homecoming, this is your Return!  
 
-At JNR, loyalty means everything. Respect means everything. Community means everything. Every duel fought, every lesson shared, every laugh in chat, every new friendship formed — all of that is still the base to the flames of our eternity!  
+Our purpose is simple, yet powerful: To reopen the doors of Nostalgia. To welcome the new generation. To reunite warriors, share memories, vibe, learn, play, chill and so much more.  
 
-We proudly welcome both seasoned masters and complete newcomers alike. In fact, there may be no better place for a new player to begin their journey. Surrounded by active veterans and passionate enthusiasts, new members are guided, supported, taught, and encouraged every step of the way — from mastering movement, combat mechanics, saber techniques, and hidden tricks of the game, to simply finding people to laugh, vibe, and create memories with. Because JKA was never only about skill. It was about the people.  
+At JNR, loyalty, respect, and community mean everything.  
 
-Our public server stands online 24/7 — a living sanctuary for duelists, explorers, learners, creators, and nostalgic souls alike. for everyone searching of that feeling they thought was lost forever. Behind the scenes, talented members continue pushing deeper into the art of the game itself: mechanics, servers, mapping, customization, and the countless hidden workings that keep this legendary world alive.  
+Welcome to: ====Jedi’s Nostalgic Return====
+  </div>
+</section>
 
-This is not the end of Jedi Academy. This is the return! A return to brotherhood. A return to unforgettable nights. A return to the sound of ignited sabers echoing through familiar halls. A return to the community that shaped so many of our memories. This time , we stand together!  
+<!-- MEMBERS -->
+<section id="members" class="section hidden">
+  <h2>JNR Members</h2>
 
-Welcome to:  ====Jedi’s Nostalgic Return====
-    </pre>
+  <div id="memberList"></div>
+</section>
 
-  </section>
+<!-- AUTH -->
+<section id="auth" class="section hidden">
 
-  <!-- ABOUT -->
-  <section id="about" class="section">
-    <h2>About JNR</h2>
-    <p>
-      JNR is a Star Wars Jedi Academy clan focused on community, respect, and nostalgia.
-      We bring together veterans and new players under one banner.
-    </p>
-  </section>
+  <h2>Register</h2>
+  <input id="regName" placeholder="Enter username">
+  <button onclick="register()">Register</button>
 
-  <!-- MEMBERS -->
-  <section id="members" class="section dark">
-    <h2>What We Do</h2>
-    <ul>
-      <li>⚔ Clan battles</li>
-      <li>🧠 Training sessions</li>
-      <li>🌌 Events & roleplay</li>
-      <li>🤝 Community support</li>
-    </ul>
-  </section>
+  <h2>Login</h2>
+  <input id="loginName" placeholder="Enter username">
+  <button onclick="login()">Sign In</button>
 
-  <!-- JOIN -->
-  <section id="join" class="section">
-    <h2>Join JNR</h2>
-    <p>If you feel the call of the Force, you already belong here.</p>
+  <p id="authMsg"></p>
 
-    <a class="btn" href="https://discord.gg/" target="_blank">
-      Join via Discord
-    </a>
-  </section>
+  <h3>Current User:</h3>
+  <p id="currentUser">None</p>
 
-  <footer>
-    <p>JNR - Jedi’s Nostalgic Return © 2026</p>
-  </footer>
+</section>
+
+<footer>
+  <p>JNR - Jedi’s Nostalgic Return © 2026</p>
+</footer>
+
+<script>
+let users = JSON.parse(localStorage.getItem("jnrUsers")) || [];
+let currentUser = localStorage.getItem("jnrCurrentUser") || null;
+
+/* SECTION NAVIGATION */
+function showSection(id) {
+  document.querySelectorAll(".section").forEach(s => s.classList.add("hidden"));
+  document.getElementById(id).classList.remove("hidden");
+
+  if (id === "members") renderMembers();
+  if (id === "auth") updateUserDisplay();
+}
+
+/* REGISTER */
+function register() {
+  let name = document.getElementById("regName").value;
+
+  if (!name) return;
+
+  if (users.includes(name)) {
+    document.getElementById("authMsg").innerText = "User already exists.";
+    return;
+  }
+
+  users.push(name);
+  localStorage.setItem("jnrUsers", JSON.stringify(users));
+
+  document.getElementById("authMsg").innerText = "Registered successfully!";
+  renderMembers();
+}
+
+/* LOGIN */
+function login() {
+  let name = document.getElementById("loginName").value;
+
+  if (users.includes(name)) {
+    currentUser = name;
+    localStorage.setItem("jnrCurrentUser", name);
+    updateUserDisplay();
+  } else {
+    document.getElementById("authMsg").innerText = "User not found.";
+  }
+}
+
+/* DISPLAY CURRENT USER */
+function updateUserDisplay() {
+  document.getElementById("currentUser").innerText = currentUser || "None";
+}
+
+/* MEMBERS LIST */
+function renderMembers() {
+  let list = document.getElementById("memberList");
+  list.innerHTML = "";
+
+  if (users.length === 0) {
+    list.innerHTML = "<p>No members yet.</p>";
+    return;
+  }
+
+  users.forEach(u => {
+    let div = document.createElement("div");
+    div.className = "member";
+    div.innerText = "⚔ " + u;
+    list.appendChild(div);
+  });
+}
+
+/* DEFAULT VIEW */
+showSection("home");
+</script>
 
 </body>
 </html>
