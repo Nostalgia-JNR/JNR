@@ -141,3 +141,13 @@ footer {
     margin-right: 10px;
   }
 }
+.hidden {
+  display: none;
+}
+
+.member {
+  padding: 10px;
+  margin: 5px 0;
+  background: #111827;
+  border-left: 3px solid #00bfff;
+}
